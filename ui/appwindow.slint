@@ -1,0 +1,18 @@
+import { Button, CheckBox, VerticalBox } from "std-widgets.slint";
+
+export component AppWindow inherits Window {
+    in-out property<int> counter: 42;
+    callback select_files();
+    VerticalBox {
+        Text {
+            text: "Select folder";
+        }
+    Button {
+            text: "Select";
+            clicked => {
+                root.select_files();
+            }
+      }
+    
+    }
+}
