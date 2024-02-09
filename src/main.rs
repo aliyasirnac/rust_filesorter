@@ -1,7 +1,7 @@
 extern crate chrono;
-use chrono::{ DateTime, Utc };
-use std::{ fs, path::PathBuf, time };
+use chrono::{DateTime, Utc};
 use rfd::FileDialog;
+use std::{fs, path::PathBuf, time};
 
 slint::include_modules!();
 
@@ -19,10 +19,7 @@ fn to_readable_date(st: &std::time::SystemTime) -> String {
 fn main() -> Result<(), slint::PlatformError> {
     let ui = AppWindow::new()?;
     ui.on_select_files({
-        let ui_handle = ui.as_weak();
         move || {
-            let ui = ui_handle.unwrap();
-            println!("{:}", ui.get_isFolder());
             let mut paths = Vec::<Properties>::new();
             let folders = FileDialog::new().pick_folders().unwrap();
 
@@ -60,10 +57,10 @@ fn main() -> Result<(), slint::PlatformError> {
                                     date
                                 );
 
-                                if path.created_at != date {
-                                    println!("yook");
-                                    continue; // Bu dosyayı atla, fakat döngüyü sonlandırma
-                                }
+                              //  if path.created_at != date {
+                                //    println!("yook");
+                                //    continue; // Bu dosyayı atla, fakat döngüyü sonlandırma
+                                //}
 
                                 // Burada, hedef klasör yolu oluşturulurken doğru metod kullanılmalı
                                 let target_path = selected_folder.join(path.created_at.to_string());
